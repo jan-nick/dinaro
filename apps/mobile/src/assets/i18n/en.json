@@ -1,0 +1,18 @@
+{
+  "add-expense.amount-input.placeholder": "Enter amount",
+  "add-expense.description-input.placeholder": "Enter description",
+  "add-expense.title": "Add expense",
+  "edit-expense.amount-input.placeholder": "Enter amount",
+  "edit-expense.description-input.placeholder": "Enter description",
+  "edit-expense.saved-on-date": "Saved on {{ date }}",
+  "edit-expense.title": "Edit expense",
+  "general.save": "Save",
+  "pages.home.expenses-data-card.total-expenses.label": "Total expenses",
+  "pages.home.expenses-list-title": "Your expenses",
+  "pages.home.filters.clear-all": "Clear",
+  "pages.home.filters.from-date.label": "From",
+  "pages.home.filters.from-date.placeholder": "Select date",
+  "pages.home.filters.title": "Filter expenses",
+  "pages.home.filters.to-date.label": "To",
+  "pages.home.filters.to-date.placeholder": "Select date"
+}

@@ -1,0 +1,26 @@
+<ion-list-header>
+  <ion-label>
+    <h2>{{ 'pages.home.expenses-list-title' | translate }}</h2>
+  </ion-label>
+  <ion-buttons>
+    <ion-button (click)="filter.toggle()">
+      <ion-icon name="filter" slot="icon-only" size="small"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-list-header>
+
+<dinaro-expenses-filter #filter></dinaro-expenses-filter>
+
+<dinaro-data-card
+  [data]="totalExpenses$ | async | currency"
+  [label]="'pages.home.expenses-data-card.total-expenses.label' | translate"
+></dinaro-data-card>
+
+<ion-content>
+  <dinaro-expense-list
+    [expenses]="expenses$ | async"
+    [loading]="(expenses$ | async) === null"
+  ></dinaro-expense-list>
+</ion-content>
+
+<dinaro-add-expense-button></dinaro-add-expense-button>

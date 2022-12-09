@@ -1,0 +1,17 @@
+<ion-fab id="open-add-expense" vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button>
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-modal
+  #modal
+  trigger="open-add-expense"
+  [initialBreakpoint]="1"
+  [breakpoints]="[0, 1]"
+  class="auto-height-modal"
+>
+  <ng-template>
+    <dinaro-add-expense (didSubmit)="modal.dismiss()"></dinaro-add-expense>
+  </ng-template>
+</ion-modal>

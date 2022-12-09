@@ -1,0 +1,29 @@
+<ng-container *ngIf="loading; else content">
+  <ion-item>
+    <ion-label>
+      <h3>
+        <ion-skeleton-text animated style="width: 75%"></ion-skeleton-text>
+      </h3>
+      <p>
+        <ion-skeleton-text animated style="width: 25%"></ion-skeleton-text>
+      </p>
+    </ion-label>
+    <ion-label slot="end">
+      <h2>
+        <ion-skeleton-text animated style="width: 2.5rem"></ion-skeleton-text>
+      </h2>
+    </ion-label>
+  </ion-item>
+</ng-container>
+
+<ng-template #content>
+  <ion-item button [detail]="false" (click)="presentEditExpenseModal()">
+    <ion-label>
+      <h3 *ngIf="expense?.description">{{ expense?.description }}</h3>
+      <p>{{ expense?.date | date }}</p>
+    </ion-label>
+    <ion-label slot="end">
+      <h2>{{ expense?.amount | currency }}</h2>
+    </ion-label>
+  </ion-item>
+</ng-template>

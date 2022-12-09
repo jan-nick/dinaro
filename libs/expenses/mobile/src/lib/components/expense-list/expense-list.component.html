@@ -1,0 +1,23 @@
+<ion-list *ngIf="loading || expenses?.length">
+  <ng-container *ngIf="loading; else content">
+    <dinaro-expense-item
+      *ngFor="let skeleton of skeletonItems"
+      [loading]="true"
+    >
+    </dinaro-expense-item>
+  </ng-container>
+
+  <ng-template #content>
+    <div dinaroAutoAnimate>
+      <dinaro-expense-item *ngFor="let expense of expenses" [expense]="expense">
+      </dinaro-expense-item>
+    </div>
+  </ng-template>
+</ion-list>
+
+<div *ngIf="!expenses?.length" class="ion-padding">
+  <h4>No expenses</h4>
+  <ion-text color="medium">
+    <p>Save new expense entries and they will be shown here.</p>
+  </ion-text>
+</div>

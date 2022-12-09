@@ -1,0 +1,107 @@
+<ion-accordion-group
+  *ngIf="filters$ | async as filters"
+  [value]="filterExpanded ? 'collapsed' : 'expanded'"
+>
+  <ion-accordion value="collapsed">
+    <ion-list slot="content">
+      <ion-list-header>
+        <ion-label> {{ 'pages.home.filters.title' | translate }} </ion-label>
+        <ion-button
+          *ngIf="hasFilter$ | async"
+          (click)="removeAllFilters()"
+          size="small"
+          dinaroAutoAnimate
+        >
+          {{ 'pages.home.filters.clear-all' | translate }}
+        </ion-button>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>
+          <p>{{ 'pages.home.filters.from-date.label' | translate }}</p>
+        </ion-label>
+
+        <ion-chip>
+          <ion-label id="from-date-trigger">
+            {{
+              filters.fromDate
+                ? (filters.fromDate | date)
+                : ('pages.home.filters.from-date.placeholder' | translate)
+            }}
+          </ion-label>
+          <ion-icon
+            *ngIf="filters.fromDate"
+            (click)="removeFilter('fromDate')"
+            name="close"
+            dinaroAutoAnimate
+          ></ion-icon>
+        </ion-chip>
+      </ion-item>
+
+      <ion-popover [keepContentsMounted]="true" trigger="from-date-trigger">
+        <ng-template>
+          <ion-datetime
+            (ionChange)="onFromDateChange($event)"
+            [value]="filters.fromDate"
+            [max]="filters.toDate"
+            id="from-date"
+            presentation="date"
+          ></ion-datetime>
+        </ng-template>
+      </ion-popover>
+
+      <ion-item>
+        <ion-label>
+          <p>{{ 'pages.home.filters.to-date.label' | translate }}</p>
+        </ion-label>
+
+        <ion-chip>
+          <ion-label id="to-date-trigger">
+            {{
+              filters.toDate
+                ? (filters.toDate | date)
+                : ('pages.home.filters.to-date.placeholder' | translate)
+            }}
+          </ion-label>
+          <ion-icon
+            *ngIf="filters.toDate"
+            (click)="removeFilter('toDate')"
+            name="close"
+            dinaroAutoAnimate
+          ></ion-icon>
+        </ion-chip>
+      </ion-item>
+
+      <ion-popover [keepContentsMounted]="true" trigger="to-date-trigger">
+        <ng-template>
+          <ion-datetime
+            (ionChange)="onToDateChange($event)"
+            [value]="filters.toDate"
+            [min]="filters.fromDate"
+            id="to-date"
+            presentation="date"
+          ></ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-list>
+  </ion-accordion>
+
+  <ion-accordion value="expanded">
+    <ion-row slot="content" dinaroAutoAnimate>
+      <ion-chip *ngIf="filters?.fromDate as fromDate">
+        <ion-label>
+          {{ 'pages.home.filters.from-date.label' | translate }}
+          {{ fromDate | date }}
+        </ion-label>
+        <ion-icon (click)="removeFilter('fromDate')" name="close"></ion-icon>
+      </ion-chip>
+      <ion-chip *ngIf="filters?.toDate as toDate">
+        <ion-label>
+          {{ 'pages.home.filters.to-date.label' | translate }}
+          {{ toDate | date }}
+        </ion-label>
+        <ion-icon (click)="removeFilter('toDate')" name="close"></ion-icon>
+      </ion-chip>
+    </ion-row>
+  </ion-accordion>
+</ion-accordion-group>

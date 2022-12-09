@@ -14,7 +14,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@dinaro/expenses": ["libs/expenses/src/index.ts"],
+      "@dinaro/expenses/mobile": ["libs/expenses/mobile/src/index.ts"],
+      "@dinaro/expenses/testing": ["libs/expenses/testing/src/index.ts"],
+      "@dinaro/ui": ["libs/ui/src/index.ts"],
+      "@dinaro/ui/mobile": ["libs/ui/mobile/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

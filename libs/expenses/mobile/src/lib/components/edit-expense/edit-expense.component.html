@@ -1,0 +1,63 @@
+<form (submit)="submit()" [formGroup]="formGroup">
+  <ion-list lines="full">
+    <ion-list-header>
+      <ion-label>{{ 'edit-expense.title' | translate }}</ion-label>
+      <ion-buttons>
+        <ion-button (click)="deleteExpense()" color="medium" type="button">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>
+        <p>{{ 0 | currency: undefined:'code' | slice: 0:3 }}</p>
+      </ion-label>
+      <ion-input
+        formControlName="amount"
+        [placeholder]="'edit-expense.amount-input.placeholder' | translate"
+        type="number"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea
+        formControlName="description"
+        [placeholder]="'edit-expense.description-input.placeholder' | translate"
+      ></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+    </ion-item>
+
+    <ion-popover [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime
+          formControlName="date"
+          id="datetime"
+          presentation="date"
+        ></ion-datetime>
+      </ng-template>
+    </ion-popover>
+
+    <ion-item lines="none">
+      <ion-label color="medium">
+        <p>
+          {{
+            'edit-expense.saved-on-date'
+              | translate: { date: expense.date | date: 'medium' }
+          }}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-footer>
+    <ion-toolbar>
+      <ion-button [disabled]="formGroup.invalid" expand="block" type="submit">
+        {{ 'general.save' | translate }}
+      </ion-button>
+    </ion-toolbar>
+  </ion-footer>
+</form>
